@@ -1,24 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from './components/Header';
+import { Router } from '@reach/router';
 import './App.css';
+import Navbar from './components/Navbar';
+import ArticlesList from './components/ArticlesList/ArticlesList';
+import SingleArticle from './components/SingleArticle/SingleArticle';
+import TopicsSidebar from './components/TopicsSidebar';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className="app-header">
+        <Header />
+      </div>
+
+      <div className="app-body">
+
+        <div className="sidebar">
+          <TopicsSidebar />
+        </div>
+
+        <div className="app-main">
+          <Navbar />
+          <Router>
+            <ArticlesList path="/" />
+            <ArticlesList path="/articles" />
+            <SingleArticle path="/articles/:article_id" />
+          </Router>
+        </div>
+
+      </div>
+      
     </div>
   );
 }
