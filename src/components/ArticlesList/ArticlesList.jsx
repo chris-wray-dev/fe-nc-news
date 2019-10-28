@@ -25,7 +25,7 @@ class ArticlesList extends Component {
         <SearchBar />
         { articles.map(article => {
           return (
-            <ArticleCard article={article} />
+            <ArticleCard key={article.article_id} article={article} />
           )
         })}
       </div>
