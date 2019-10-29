@@ -1,22 +1,27 @@
 import React from 'react';
 import '../styles/SearchBar.css'
 
-const SearchBar = () => {
+const SearchBar = ({ sortItems, sortParams }) => {
 
   const handleChange = (event) => {
-    console.log(event.target.id, event.target.value);
+    sortParams[event.target.id] = event.target.value;
+    sortItems(sortParams);
   }
 
   return (
     <div className="search-bar-container">
 
-    <form onChange={ handleChange }>
+    <form onChange={ handleChange } >
 
       <label htmlFor="sort_by">
         sort by : 
         <select name="sort_by" id="sort_by">
           <option value="">--sort by--</option>
-          <option value="created_at">created_at</option>
+          <option value="created_at">date created</option>
+          <option value="title">title</option>
+          <option value="author">author</option>
+          <option value="topic">topic</option>
+          <option value="comment_count">comment_count</option>
         </select>
       </label>
 
