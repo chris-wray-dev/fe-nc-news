@@ -53,17 +53,26 @@ export const addArticleComment = ({ article_id, username, body }) => {
     })
 }
 
-/*
-exports.insertComment = ({ article_id }, { username, body }) => {
-  return connection('comments')
-    .insert({
-      author: username,
-      article_id: article_id,
-      body: body
-    })
-    .returning('*')
+export const deleteComment = (comment_id) => {
+  return request.delete(`comments/${comment_id}`)
     .then(comment => {
-      return comment[0];
-    });
+      return comment;
+    })
+}
+
+/*
+exports.deleteCommentById = ({ comment_id }) => {
+  return connection('comments')
+    .where('comment_id', comment_id)
+    .del()
+    .then(commentsDeleted => {
+      if (!commentsDeleted) {
+        return Promise.reject({
+          status: 404,
+          msg: `comment ${comment_id} not found!!!`
+        });
+      }
+      return commentsDeleted;
+    })
 }
 */

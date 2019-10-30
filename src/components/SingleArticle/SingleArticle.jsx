@@ -40,6 +40,16 @@ class SingleArticle extends Component {
       })
   }
 
+  deleteComment = (comment_id) => {
+    api.deleteComment(comment_id)
+      .then(comment => {
+        api.getCommentsForArticle(this.props.article_id)
+          .then(comments => {
+            this.setState({ comments }) 
+        });
+      })
+  }
+
 
   render() {
     const { article, comments, isLoading, showAddComment } = this.state;
@@ -79,7 +89,12 @@ class SingleArticle extends Component {
         <div className="comments-container">
           { comments.map(comment => {
             return (
-              <CommentCard key={ comment.comment_id } comment={ comment } handleClick={ this.handleClick }/>
+              <CommentCard 
+                key={ comment.comment_id } 
+                comment={ comment } 
+                username={ "tickle122" }
+                deleteComment= { this.deleteComment }
+              />
             )
           })}
         </div>
