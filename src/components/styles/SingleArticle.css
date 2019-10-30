@@ -9,3 +9,7 @@
   display: flex;
   flex-direction: row;
 }
+
+.add-comment-container {
+  visibility: visible;
+}

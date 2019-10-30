@@ -3,12 +3,14 @@ import * as api from '../../utils/api';
 import '../styles/SingleArticle.css'
 import CommentCard from './CommentCard';
 import Voter from '../Voter';
+import AddComment from './AddComment';
 
 class SingleArticle extends Component {
   state = {
     article: {},
     comments: [],
-    isLoading: true
+    isLoading: true,
+    showAddComment: false
   }
 
   componentDidMount = () => {
@@ -25,9 +27,22 @@ class SingleArticle extends Component {
     })
   }
 
+  handleAddCommentClick = () => {
+    this.setState({ showAddComment: !this.state.showAddComment });
+  }
+
+  submitComment = (comment) => {
+    api.addArticleComment(comment)
+      .then(comment => {
+        this.setState({
+          comments: [ comment, ...this.state.comments ]
+        })
+      })
+  }
+
 
   render() {
-    const { article, comments, isLoading } = this.state;
+    const { article, comments, isLoading, showAddComment } = this.state;
     if (isLoading) return <p>loading...</p>
     return (
       <div className="article-container">
@@ -49,6 +64,16 @@ class SingleArticle extends Component {
             id={article.article_id} 
             votes={article.votes}
           />
+        </div>
+
+        <button onClick={ this.handleAddCommentClick }>Add A Comment</button>
+        <div className="add-comment-container">
+          { showAddComment 
+            ? <AddComment 
+                article_id={ article.article_id } 
+                username="tickle122"
+                submitComment={ this.submitComment } /> 
+            : null }
         </div>
 
         <div className="comments-container">

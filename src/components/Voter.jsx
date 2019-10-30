@@ -19,50 +19,38 @@ class Voter extends Component {
 
       this.setState({ vote: vote, votes: votes + vote });
 
-      if (type === "comment") {
-        api.patchCommentVote(id, vote)
-          .catch(err => {
-            this.setState({
-              err: {
-                status: 500,
-                msg: "oops - vote not counted"
-              },
-              vote: 0,
-              votes: votes
-            })
-          });
+      const errorState = (err) => {
+        this.setState({
+          err: {
+            status: 500,
+            msg: "oops - vote not counted"
+          },
+          vote: 0,
+          votes: votes
+        })
       }
 
-      if (type === "article") {
-        api.patchArticleVote(id, vote)
-        .catch(err => {
-          this.setState({
-            err: {
-              status: 500,
-              msg: "oops - vote not counted"
-            },
-            vote: 0,
-            votes: votes
-          })
+      const addVotes = (apiFunc, id, vote) => {
+        apiFunc(id, vote).catch(err => {
+          errorState(err);
         });
       }
-    }
 
-    
+      if (type === "comment") addVotes(api.patchCommentVote, id, vote);
+      if (type === "article") addVotes(api.patchArticleVote, id, vote);
+    }
 
   }
 
   render() {
     const { votes, err } = this.state;
     return (
-      <>
       <div>
         <i id="up-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-up"></i>
         <p>{ votes }</p>
         <i id="down-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-down"></i>
+        { err ? <p>{err.msg}</p> : null }
       </div>
-      { err ? <p>{err.msg}</p> : null }
-      </>
     );
   }
 }
