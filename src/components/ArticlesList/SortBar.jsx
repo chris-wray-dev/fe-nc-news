@@ -25,6 +25,7 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           <option value="author">author</option>
           <option value="topic">topic</option>
           <option value="comment_count">comment_count</option>
+          <option value="votes">votes</option>
         </select>
       </label>
 

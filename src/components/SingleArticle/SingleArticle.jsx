@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../../utils/api';
 import '../styles/SingleArticle.css'
 import CommentCard from './CommentCard';
+import Voter from '../Voter';
 
 class SingleArticle extends Component {
   state = {
@@ -11,42 +12,19 @@ class SingleArticle extends Component {
   }
 
   componentDidMount = () => {
+    this.fetchArticleAndComments();
+  }
+
+  fetchArticleAndComments = () => {
     Promise.all([ 
-        api.getArticleById(this.props.article_id), 
-        api.getCommentsForArticle(this.props.article_id)
-      ])
-      .then(([article, comments]) => {
-        this.setState({ article, comments, isLoading: false });
-      })
+      api.getArticleById(this.props.article_id), 
+      api.getCommentsForArticle(this.props.article_id)
+    ])
+    .then(([article, comments]) => {
+      this.setState({ article, comments, isLoading: false });
+    })
   }
 
-  componentDidUpdate = (prevState) => {
-    if (this.state !== prevState) {
-      this.componentDidMount();
-    }
-  }
-
-  handleClick = (event, comment_id) => {
-    const { article } = this.state;
-    if (event.target.id === 'article-thumb-up') this.updateArticleVote(article.article_id, 1);
-    if (event.target.id === 'article-thumb-down') this.updateArticleVote(article.article_id, -1);
-    if (event.target.id === 'comment-thumb-up') this.updateCommentVote(comment_id, 1);
-    if (event.target.id === 'comment-thumb-down') this.updateCommentVote(comment_id, -1);
-  }
-
-  updateArticleVote = (article_id, vote) => {
-    api.patchArticleVote(article_id, vote)
-      .then((article) => {
-        this.setState(article);
-      })
-  }
-
-  updateCommentVote = (comment_id, vote) => {
-    api.patchCommentVote(comment_id, vote)
-      .then((article) => {
-        this.setState(article);
-      })
-  }
 
   render() {
     const { article, comments, isLoading } = this.state;
@@ -66,9 +44,11 @@ class SingleArticle extends Component {
         </div>
 
         <div className="votes-container">
-          <i id="article-thumb-up" onClick={ this.handleClick } className="far fa-2x fa-thumbs-up"></i>
-          <p>{ article.votes }</p>
-          <i id="article-thumb-down" onClick={ this.handleClick } className="far fa-2x fa-thumbs-down"></i>
+          <Voter 
+            type="article" 
+            id={article.article_id} 
+            votes={article.votes}
+          />
         </div>
 
         <div className="comments-container">

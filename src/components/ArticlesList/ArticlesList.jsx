@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../../utils/api';
 import ArticleCard from './ArticleCard';
-import SearchBar from './SearchBar';
+import SearchBar from './SortBar';
 
 let defaultState = 
  {
