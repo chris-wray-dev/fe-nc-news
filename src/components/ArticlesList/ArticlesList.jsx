@@ -3,42 +3,69 @@ import * as api from '../../utils/api';
 import ArticleCard from './ArticleCard';
 import SearchBar from './SearchBar';
 
+let defaultState = 
+ {
+  articles: [],
+  requestParams: {
+    sort_by: 'article_id',
+    order: 'asc',
+    limit: 10,
+    p: 1,
+    topic: null
+  },
+  pagination: null,
+  isLoading: true
+};
+
+// if (localStorage.ncState) {
+//   defaultState = JSON.parse(localStorage.ncState)
+// }
+
 class ArticlesList extends Component {
-  state = {
-    articles: [],
-    sortParams: {
-      'sort_by': 'article_id',
-      'order': 'asc',
-      'limit': 5,
-      'p': 1
-    },
-    pagination: null,
-    isLoading: true
-  }
+  state = defaultState;
 
   componentDidMount = () => {
-    const { sortParams } = this.state;
-    this.fetchArticles(sortParams);
+    const { requestParams } = this.state;
+    this.fetchArticles(requestParams);
   }
 
-  sortItems = (sortParams) => {
-    this.fetchArticles(sortParams);
+  componentDidUpdate = (prevProps) => {
+    if (this.props !== prevProps) {
+      const { requestParams } = this.state;
+      this.fetchArticles(requestParams);
+    }
+    
   }
 
-  fetchArticles = (sortParams) => {
-    api.getAllArticles(sortParams)
-    .then(({articles, pagination}) => {
-      this.setState({ articles, pagination, isLoading: false })
-    })
+  sortItems = (requestParams) => {
+    this.setState({ requestParams });
+    this.fetchArticles(requestParams);
+  }
+
+  fetchArticles = (requestParams) => {
+    api.getAllArticles({ ...requestParams, topic: this.props.topic,  })
+      .then(({articles, pagination}) => {
+        this.setState({ 
+          articles, 
+          pagination, 
+          isLoading: false,
+          requestParams: { ...requestParams, topic: this.props.topic }
+        });
+        localStorage.ncState = JSON.stringify(this.state);
+      });
   }
 
   render() {
-    const { articles, isLoading, sortParams } = this.state;
+    const { articles, isLoading, requestParams, pagination } = this.state;
     if (isLoading) return <p>loading...</p>
     return (
       <div className="articles-list-container">
         <h2>Articles</h2>
-        <SearchBar sortItems={ this.sortItems } sortParams={ sortParams }/>
+        <SearchBar 
+          sortItems={ this.sortItems } 
+          requestParams={ requestParams }
+          pagination={ pagination }
+        />
         { articles.map(article => {
           return (
             <ArticleCard key={article.article_id} article={article} />

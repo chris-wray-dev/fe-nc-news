@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
-import './styles/TopicsSidebar.css'
+import './styles/TopicsSidebar.css';
+import { Link } from '@reach/router';
 
 class TopicsSidebar extends Component {
   state = {
@@ -21,9 +22,10 @@ class TopicsSidebar extends Component {
     return (
       <div className="topics-container">
         <h3>Topics</h3>
+        <Link to="/articles">all articles</Link>
         { topics.map(topic => {
           return (
-            <p key={ topic.slug }>{ topic.slug }</p>
+            <Link to={`/topic/${topic.slug}`} key={topic.slug}>{topic.slug}</Link>
           )
         })}
       </div>

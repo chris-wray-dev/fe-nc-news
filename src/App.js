@@ -14,6 +14,7 @@ function App() {
 
       <div className="app-header">
         <Header />
+        <Navbar />
       </div>
 
       <div className="app-body">
@@ -23,10 +24,11 @@ function App() {
         </div>
 
         <div className="app-main">
-          <Navbar />
+          
           <Router>
             <ArticlesList path="/" />
             <ArticlesList path="/articles" />
+            <ArticlesList path="/topic/:topic" />
             <SingleArticle path="/articles/:article_id" />
           </Router>
         </div>

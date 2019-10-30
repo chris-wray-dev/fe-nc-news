@@ -1,6 +1,9 @@
 .topics-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: aliceblue;
-  padding: 0;
+  padding: 5px 20px;
 }
 
 .topics-container h3 {

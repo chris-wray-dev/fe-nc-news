@@ -1,21 +1,24 @@
 import React from 'react';
 import '../styles/SearchBar.css'
 
-const SearchBar = ({ sortItems, sortParams }) => {
+const SearchBar = ({ sortItems, requestParams, pagination }) => {
 
   const handleChange = (event) => {
-    sortParams[event.target.id] = event.target.value;
-    sortItems(sortParams);
+    requestParams[event.target.id] = event.target.value;
+    sortItems(requestParams);
   }
 
   return (
     <div className="search-bar-container">
 
-    <form onChange={ handleChange } >
+    <form  >
 
       <label htmlFor="sort_by">
-        sort by : 
-        <select name="sort_by" id="sort_by">
+        sort by : <select 
+          onChange={ handleChange } 
+          name="sort_by" 
+          id="sort_by"
+          value={requestParams.sort_by}>
           <option value="">--sort by--</option>
           <option value="created_at">date created</option>
           <option value="title">title</option>
@@ -26,21 +29,37 @@ const SearchBar = ({ sortItems, sortParams }) => {
       </label>
 
       <label htmlFor="order">
-        order : 
-        <select name="order" id="order">
+        order : <select 
+          onChange={ handleChange } 
+          name="order" 
+          id="order"
+          value={requestParams.order}>
           <option value="asc">asc</option>
           <option value="desc">desc</option>
         </select>
       </label>
 
       <label htmlFor="p">
-        page number :
-        <input id="p" type="number" />
+        page number : <select 
+          onChange={ handleChange } 
+          id="p" 
+          type="number" 
+          value={requestParams.p}>
+          {pagination.pageList.map(page => {
+            return (
+              <option key={page} value={page}>{page}</option>
+            )
+          })}
+        </select>
+        
       </label>
 
       <label htmlFor="limit">
-        items per page :
-        <input id="limit" type="number"/>
+        items per page : <input
+          onChange={ handleChange } 
+          id="limit" 
+          type="number"
+          value={requestParams.limit}/>
       </label>
       
     </form>
