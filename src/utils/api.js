@@ -35,3 +35,10 @@ export const patchArticleVote = (article_id, vote) => {
       return data.article
     })
 }
+
+export const patchCommentVote = (comment_id, vote) => {
+  return request.patch(`/comments/${comment_id}`, { inc_votes: vote })
+    .then(({ data }) => {
+      return data.comment
+    })
+}

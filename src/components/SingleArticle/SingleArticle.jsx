@@ -26,15 +26,23 @@ class SingleArticle extends Component {
     }
   }
 
-  handleClick = (event) => {
+  handleClick = (event, comment_id) => {
     const { article } = this.state;
-    if (event.target.id === 'thumb-up') this.updateVote(article.article_id, 1);
-    if (event.target.id === 'thumb-down') this.updateVote(article.article_id, -1);
-
+    if (event.target.id === 'article-thumb-up') this.updateArticleVote(article.article_id, 1);
+    if (event.target.id === 'article-thumb-down') this.updateArticleVote(article.article_id, -1);
+    if (event.target.id === 'comment-thumb-up') this.updateCommentVote(comment_id, 1);
+    if (event.target.id === 'comment-thumb-down') this.updateCommentVote(comment_id, -1);
   }
 
-  updateVote = (article_id, vote) => {
+  updateArticleVote = (article_id, vote) => {
     api.patchArticleVote(article_id, vote)
+      .then((article) => {
+        this.setState(article);
+      })
+  }
+
+  updateCommentVote = (comment_id, vote) => {
+    api.patchCommentVote(comment_id, vote)
       .then((article) => {
         this.setState(article);
       })
@@ -58,15 +66,15 @@ class SingleArticle extends Component {
         </div>
 
         <div className="votes-container">
-          <i id="thumb-up" onClick={ this.handleClick } className="far fa-2x fa-thumbs-up"></i>
+          <i id="article-thumb-up" onClick={ this.handleClick } className="far fa-2x fa-thumbs-up"></i>
           <p>{ article.votes }</p>
-          <i id="thumb-down" onClick={ this.handleClick } className="far fa-2x fa-thumbs-down"></i>
+          <i id="article-thumb-down" onClick={ this.handleClick } className="far fa-2x fa-thumbs-down"></i>
         </div>
 
         <div className="comments-container">
           { comments.map(comment => {
             return (
-              <CommentCard key={ comment.comment_id } comment={ comment }/>
+              <CommentCard key={ comment.comment_id } comment={ comment } handleClick={ this.handleClick }/>
             )
           })}
         </div>
