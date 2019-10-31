@@ -7,6 +7,7 @@ import AddComment from './AddComment';
 
 class SingleArticle extends Component {
   state = {
+    username: null,
     article: {},
     comments: [],
     isLoading: true,
@@ -14,6 +15,8 @@ class SingleArticle extends Component {
   }
 
   componentDidMount = () => {
+    const { username } = this.props;
+    this.setState({ username });
     this.fetchArticleAndComments();
   }
 

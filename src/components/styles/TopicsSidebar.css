@@ -2,10 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: aliceblue;
   padding: 5px 20px;
 }
 
 .topics-container h3 {
   margin-top: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .topics-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
 }

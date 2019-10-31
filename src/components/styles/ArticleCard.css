@@ -5,20 +5,20 @@
   margin: 15px 30px;
   text-decoration: none;
   border-radius: 10px;
-  background-image: linear-gradient(to right, rgb(164, 164, 164), rgb(148, 107, 137), rgb(164, 164, 164));
   transition: all 0.3s;
+  border: 1px black solid;
 }
 
 .article-card:hover {
   transform: scale(1.03);
   box-shadow: 10px 10px 15px rgb(57, 57, 57);
-  background-image: linear-gradient(to right, rgb(148, 107, 137), rgb(164, 164, 164), rgb(148, 107, 137));
+  background-image: linear-gradient(to right, rgb(216, 177, 206), rgb(164, 164, 164), rgb(216, 177, 206));
 
 }
 
 .article-topic {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
   color: white;
   float: left;
   width: 150px;
@@ -32,8 +32,8 @@
 .article-details {
   display: flex;
   flex-direction: column;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
   width: 100%;
 }
 
@@ -48,7 +48,7 @@
 
 .article-title {
   padding: 10px;
-  border-top-right-radius: 10px;
+  border-top-right-radius: 9px;
   background-color: rgba(182, 182, 182, 0.317);
 
 }
@@ -64,4 +64,10 @@
 .article-stats p {
   margin: 0;
   padding: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+  .article-card {
+    margin: 15px 2px;
+  }
 }

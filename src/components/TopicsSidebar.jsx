@@ -20,8 +20,10 @@ class TopicsSidebar extends Component {
     const { topics, isLoading } = this.state;
     if (isLoading) return <p>...Loading</p>
     return (
+      <>
+      <h3>Topics</h3>
       <div className="topics-container">
-        <h3>Topics</h3>
+        
         <Link to="/articles">all articles</Link>
         { topics.map(topic => {
           return (
@@ -29,6 +31,7 @@ class TopicsSidebar extends Component {
           )
         })}
       </div>
+      </>
     );
   }
 }

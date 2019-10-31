@@ -1,0 +1,34 @@
+.header-container {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: rgb(50, 50, 50);
+}
+
+.home {
+  float: left;
+}
+
+h1 {
+  margin: 0;
+}
+
+.fas {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s
+}
+
+.fas:hover {
+  transform: scale(1.12);
+  color: rgb(213, 213, 198);
+  cursor: pointer;
+}
+
+.logout:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+

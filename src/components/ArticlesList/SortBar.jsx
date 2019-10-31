@@ -11,7 +11,7 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
   return (
     <div className="search-bar-container">
 
-    <form  >
+    <form >
 
       <label htmlFor="sort_by">
         sort by : <select 
@@ -60,7 +60,9 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           onChange={ handleChange } 
           id="limit" 
           type="number"
-          value={requestParams.limit}/>
+          value={requestParams.limit}
+          min="1"
+          max={pagination.total}/>
       </label>
       
     </form>

@@ -60,6 +60,13 @@ export const deleteComment = (comment_id) => {
     })
 }
 
+export const getUserByUsername = (username) => {
+  return request.get(`users/${username}`)
+    .then(user => {
+      return user;
+    })
+}
+
 /*
 exports.deleteCommentById = ({ comment_id }) => {
   return connection('comments')

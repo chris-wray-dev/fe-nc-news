@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import * as api from '../../utils/api';
 import ArticleCard from './ArticleCard';
 import SearchBar from './SortBar';
+import '../styles/ArticlesList.css'
 
 let defaultState = 
  {
+  username: null,
   articles: [],
   requestParams: {
     sort_by: 'article_id',
@@ -26,6 +28,8 @@ class ArticlesList extends Component {
 
   componentDidMount = () => {
     const { requestParams } = this.state;
+    const { username } = this.props;
+    this.setState({ username });
     this.fetchArticles(requestParams);
   }
 
@@ -56,11 +60,12 @@ class ArticlesList extends Component {
   }
 
   render() {
-    const { articles, isLoading, requestParams, pagination } = this.state;
+    const { articles, isLoading, requestParams, pagination, username } = this.state;
     if (isLoading) return <p>loading...</p>
     return (
       <div className="articles-list-container">
         <h2>Articles</h2>
+        <p>{ `articles ${pagination.from} to ${pagination.to} of ${pagination.total}...`}</p>
         <SearchBar 
           sortItems={ this.sortItems } 
           requestParams={ requestParams }
@@ -68,7 +73,7 @@ class ArticlesList extends Component {
         />
         { articles.map(article => {
           return (
-            <ArticleCard key={article.article_id} article={article} />
+            <ArticleCard key={ article.article_id } article={ article } username={ username }/>
           )
         })}
       </div>
