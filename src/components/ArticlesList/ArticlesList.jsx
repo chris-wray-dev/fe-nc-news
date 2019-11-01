@@ -84,7 +84,10 @@ class ArticlesList extends Component {
     return (
       <div className="articles-list-container">
         <h2>Articles</h2>
-        <p>{ `articles ${pagination.from} to ${pagination.to} of ${pagination.total}...`}</p>
+        <p>{ `articles ${pagination.from} 
+          to ${pagination.to > pagination.total 
+              ? pagination.total : pagination.to } 
+          of ${pagination.total}...`}</p>
         <SearchBar 
           sortItems={ this.sortItems } 
           requestParams={ requestParams }

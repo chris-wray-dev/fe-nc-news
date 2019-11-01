@@ -1,3 +1,12 @@
-#limit {
-  width: 30px;
+
+
+.search-bar-container label{
+  margin: 5px;
+  padding: 3px;
+}
+
+.search-bar-container select {
+  padding: 5px;
+  font-size: 12px;
+  margin: 2px;
 }

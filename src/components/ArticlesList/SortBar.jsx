@@ -56,13 +56,20 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
       </label>
 
       <label htmlFor="limit">
-        items per page : <input
+        items per page : <select
           onChange={ handleChange } 
           id="limit" 
           type="number"
           value={requestParams.limit}
-          min="1"
-          max={pagination.total}/>
+          >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="40">40</option>
+
+
+        </select>
+
       </label>
       
     </form>

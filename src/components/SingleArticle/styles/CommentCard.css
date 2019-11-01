@@ -1,3 +1,23 @@
 .comment-container {
-  background-color: rgb(168, 232, 231);
+  background-color: rgb(48, 53, 53);
+  margin: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(147, 175, 223);
+}
+
+.delete-comment-button {
+  padding: 5px;
+  border-radius: 4px;
+  margin: 10px;
+  background-color: rgb(191, 62, 62);
+  border: none;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.delete-comment-button:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+  font-weight: bold;
 }

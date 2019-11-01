@@ -4,7 +4,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
-  background-color: #000807;
+  background-color: #202829
 }
 
 .home {
@@ -13,6 +13,10 @@
 
 h1 {
   margin: 0;
+}
+
+.header-container img {
+  height: 50px;
 }
 
 .fas {

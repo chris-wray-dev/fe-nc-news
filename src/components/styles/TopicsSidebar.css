@@ -2,11 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 
-.topics-container h3 {
-  margin-top: 0;
+.topics-header h3 {
+  margin: 3px;
+}
+
+.topic-link {
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  background-color: #333333;
+  margin: 6px;
+  border-radius: 4px;
+  transition: all 0.3s
+}
+
+.topic-link:hover {
+  cursor: pointer;
+  transform: scale(1.12);
+  box-shadow: 5px 5px 5px rgb(70, 70, 70);
 }
 
 @media only screen and (max-width: 600px) {

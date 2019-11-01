@@ -21,13 +21,15 @@ class TopicsSidebar extends Component {
     if (isLoading) return <p>...Loading</p>
     return (
       <>
-      <h3>Topics</h3>
+      <div className="topics-header">
+        <h3 className="topics-header">Topics</h3>
+      </div>
       <div className="topics-container">
         
-        <Link to="/articles">all articles</Link>
+        <Link className="topic-link" to="/articles">all articles</Link>
         { topics.map(topic => {
           return (
-            <Link to={`/topic/${topic.slug}`} key={topic.slug}>{topic.slug}</Link>
+            <Link className="topic-link" to={`/topic/${topic.slug}`} key={topic.slug}>{topic.slug}</Link>
           )
         })}
       </div>

@@ -2,19 +2,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  
+  background-color: rgb(60, 60, 60);
+  color: rgb(218, 209, 209);
+  padding: 5px;
 }
 
+.article-body {
+  margin: 10px;
+}
 .votes-container {
   display: flex;
   flex-direction: row;
 }
 
-.add-comment-container {
-  visibility: visible;
-}
-
 hr {
   width: 60%;
+}
+
+.article-container .add-comment-button {
+  padding: 5px;
+  border-radius: 4px;
+  margin: 10px;
+  background-color: rgb(203, 175, 211);
+  border: none;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.article-container .add-comment-button:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+  font-weight: bold;
 }

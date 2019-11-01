@@ -119,7 +119,7 @@ class SingleArticle extends Component {
           />
         </div>
 
-        { username && <button onClick={ this.handleAddCommentClick }>Add A Comment</button>}
+        { username && <button className="add-comment-button" onClick={ this.handleAddCommentClick }>Add A Comment</button>}
         <div className="add-comment-container">
           { showAddComment 
             ? <AddComment 
