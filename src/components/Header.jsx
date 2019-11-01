@@ -10,7 +10,7 @@ const customStyles = {
   content: {
     backgroundColor: "#282c34",
     width: '400px',
-    height: '300px',
+    height: '240px',
     maxWidth: "800px",
     top: "50%",
     left: "50%",
@@ -54,16 +54,16 @@ class Header extends React.Component {
 
   clickLogout = () => {
     this.setState({ username: null });
+    this.props.userLogin(null);
   }
 
   loginUser = (username) => {
-    this.setState({ username });
+    this.setState({ username, modalIsOpen: false });
     this.props.userLogin(username);
   }
 
   render() {
     const { username } = this.state
-    const { userLogin } = this.props;
     return (
       <>
       <div className="header-container">
@@ -72,6 +72,7 @@ class Header extends React.Component {
         { !username && <i onClick={this.clickLogin} className="fas fa-2x fa-sign-in-alt"></i> }
         { username && <p className="logout" onClick={this.clickLogout}>{ username } logout</p> }
       </div>
+      
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}

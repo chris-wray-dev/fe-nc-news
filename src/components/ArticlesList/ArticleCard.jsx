@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ArticleCard.css';
+import './styles/ArticleCard.css';
 import { Link } from '@reach/router';
 
 const ArticleCard = ({ article, username }) => {
@@ -23,7 +23,7 @@ const ArticleCard = ({ article, username }) => {
         <div className="article-stats">
           <p>votes : {article.votes}</p>
           <p>comments : {article.comment_count}</p>
-          <p>date : {article.created_at}</p>
+          <p>{ (new Date(article.created_at)).toLocaleString() }</p>
         </div>
 
       </div>

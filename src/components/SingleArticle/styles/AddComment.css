@@ -1,0 +1,30 @@
+#add-comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#add-comment-form label, textarea, button {
+  margin: 5px;
+}
+
+#add-comment-form textarea {
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#add-comment-form button {
+  padding: 5px;
+  border-radius: 4px;
+  margin: 10px;
+  background-color: rgb(180, 205, 180);
+  border: none;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+#add-comment-form button:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+  font-weight: bold;
+}

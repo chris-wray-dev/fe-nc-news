@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import * as api from '../../utils/api';
 import ArticleCard from './ArticleCard';
 import SearchBar from './SortBar';
-import '../styles/ArticlesList.css'
+import Error from '../Error';
+import './styles/ArticlesList.css';
 
 let defaultState = 
  {
@@ -16,7 +17,8 @@ let defaultState =
     topic: null
   },
   pagination: null,
-  isLoading: true
+  isLoading: true,
+  err: null
 };
 
 // if (localStorage.ncState) {
@@ -56,11 +58,28 @@ class ArticlesList extends Component {
           requestParams: { ...requestParams, topic: this.props.topic }
         });
         localStorage.ncState = JSON.stringify(this.state);
-      });
+      })
+      .catch(err => {
+        console.dir(err);
+        this.setState({
+          err: {
+            status: err.response.status,
+            msg: err.response.data.msg
+          }
+        })
+      })
   }
 
   render() {
-    const { articles, isLoading, requestParams, pagination, username } = this.state;
+    const { 
+      articles, 
+      isLoading, 
+      requestParams, 
+      pagination, 
+      username,
+      err } = this.state; 
+      
+    if ( err ) return <Error err={err}/>
     if (isLoading) return <p>loading...</p>
     return (
       <div className="articles-list-container">

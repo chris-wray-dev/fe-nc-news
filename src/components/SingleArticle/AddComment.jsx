@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/AddComment.css';
 
 class AddComment extends React.Component {
   state = {
@@ -29,16 +30,11 @@ class AddComment extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="add-comment-container">
         <form onSubmit={ this.handleSubmit } id="add-comment-form">
-          <label htmlFor="body">
-            Comment :
-            <textarea onChange={ this.handleChange } id="body" cols="70" rows="10">
-
-            </textarea>
-          </label>
-          <button type="submit">Submit Comment!!!</button>
-
+          <label htmlFor="body">Comment : </label>
+          <textarea onChange={ this.handleChange } id="body" cols="70" rows="10" required/>
+          <button type="submit">Submit</button>
         </form>
         
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/CommentCard.css';
+import './styles/CommentCard.css';
 import Voter from '../Voter';
 
 const CommentCard = ({ comment, username, deleteComment }) => {

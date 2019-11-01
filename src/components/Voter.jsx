@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../utils/api';
+import './styles/Voter.css';
 
 class Voter extends Component {
   state = {
@@ -45,7 +46,7 @@ class Voter extends Component {
   render() {
     const { votes, err } = this.state;
     return (
-      <div>
+      <div className="voter-container">
         <i id="up-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-up"></i>
         <p>{ votes }</p>
         <i id="down-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-down"></i>

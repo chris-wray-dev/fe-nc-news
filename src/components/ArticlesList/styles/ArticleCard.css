@@ -1,19 +1,17 @@
 .article-card {
-  color: black;
+  color: white;
   display: flex;
   flex-direction: row;
   margin: 15px 30px;
   text-decoration: none;
   border-radius: 10px;
   transition: all 0.3s;
-  border: 1px black solid;
+  background-color: #333333;
 }
 
 .article-card:hover {
-  transform: scale(1.03);
-  box-shadow: 10px 10px 15px rgb(57, 57, 57);
-  background-image: linear-gradient(to right, rgb(216, 177, 206), rgb(164, 164, 164), rgb(216, 177, 206));
-
+  transform: scale(1.01);
+  box-shadow: 7px 7px 7px rgb(57, 57, 57);
 }
 
 .article-topic {
@@ -25,7 +23,7 @@
   font-weight: bold;
   font-style: italic;
   padding: 10px;
-  background-color: rgba(55, 55, 55, 0.639);
+  background-color: #666370;
   border-right: 1px solid rgb(171, 171, 171);
 }
 

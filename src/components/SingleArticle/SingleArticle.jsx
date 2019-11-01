@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import * as api from '../../utils/api';
-import '../styles/SingleArticle.css'
+import './styles/SingleArticle.css'
 import CommentCard from './CommentCard';
 import Voter from '../Voter';
 import AddComment from './AddComment';
+import Error from '../Error';
 
 class SingleArticle extends Component {
   state = {
@@ -11,13 +12,21 @@ class SingleArticle extends Component {
     article: {},
     comments: [],
     isLoading: true,
-    showAddComment: false
+    showAddComment: false,
+    err: null
   }
 
   componentDidMount = () => {
     const { username } = this.props;
-    this.setState({ username });
+    this.setState({ username, err: null });
     this.fetchArticleAndComments();
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps !== this.props) {
+      const { username } = this.props;
+      this.setState({ username });
+    }
   }
 
   fetchArticleAndComments = () => {
@@ -27,6 +36,14 @@ class SingleArticle extends Component {
     ])
     .then(([article, comments]) => {
       this.setState({ article, comments, isLoading: false });
+    })
+    .catch(err => {
+      this.setState({
+        err: {
+          status: err.response.status,
+          msg: err.response.data.msg
+        }
+      })
     })
   }
 
@@ -41,6 +58,14 @@ class SingleArticle extends Component {
           comments: [ comment, ...this.state.comments ]
         })
       })
+      .catch(err => {
+        this.setState({
+          err: {
+            status: err.response.status,
+            msg: err.response.data.msg
+          }
+        })
+      })
   }
 
   deleteComment = (comment_id) => {
@@ -51,11 +76,26 @@ class SingleArticle extends Component {
             this.setState({ comments }) 
         });
       })
+      .catch(err => {
+        this.setState({
+          err: {
+            status: err.response.status,
+            msg: err.response.data.msg
+          }
+        })
+      })
   }
 
 
   render() {
-    const { article, comments, isLoading, showAddComment } = this.state;
+    const { 
+      article, 
+      comments, 
+      isLoading, 
+      showAddComment, 
+      username,
+      err } = this.state;
+    if (err) return <Error err={ err }/>
     if (isLoading) return <p>loading...</p>
     return (
       <div className="article-container">
@@ -79,13 +119,14 @@ class SingleArticle extends Component {
           />
         </div>
 
-        <button onClick={ this.handleAddCommentClick }>Add A Comment</button>
+        { username && <button onClick={ this.handleAddCommentClick }>Add A Comment</button>}
         <div className="add-comment-container">
           { showAddComment 
             ? <AddComment 
                 article_id={ article.article_id } 
-                username="tickle122"
-                submitComment={ this.submitComment } /> 
+                username={ username }
+                submitComment={ this.submitComment }
+                err={ err } /> 
             : null }
         </div>
 
@@ -95,8 +136,9 @@ class SingleArticle extends Component {
               <CommentCard 
                 key={ comment.comment_id } 
                 comment={ comment } 
-                username={ "tickle122" }
+                username={ username }
                 deleteComment= { this.deleteComment }
+                err={ err }
               />
             )
           })}

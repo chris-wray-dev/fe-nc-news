@@ -1,5 +1,5 @@
 import axios from 'axios';
-const request = axios.create({ baseURL: 'https://chris-nc-news-api.herokuapp.com/api'})
+const request = axios.create({ baseURL: 'https://chris-nc-news.herokuapp.com/api'})
 
 export const getAllArticles = ( requestParams ) => {
   return request.get('/articles', { params: requestParams })
@@ -67,19 +67,4 @@ export const getUserByUsername = (username) => {
     })
 }
 
-/*
-exports.deleteCommentById = ({ comment_id }) => {
-  return connection('comments')
-    .where('comment_id', comment_id)
-    .del()
-    .then(commentsDeleted => {
-      if (!commentsDeleted) {
-        return Promise.reject({
-          status: 404,
-          msg: `comment ${comment_id} not found!!!`
-        });
-      }
-      return commentsDeleted;
-    })
-}
-*/
+

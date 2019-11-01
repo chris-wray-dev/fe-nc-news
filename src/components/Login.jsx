@@ -1,31 +1,39 @@
 import React from 'react';
 import * as api from '../utils/api';
+import './styles/Login.css';
 
 class Login extends React.Component {
 
   state = {
-    username: null,
-    password: null,
-    userExists: null,
+    username: 'jessjelly',
+    password: 'password',
     err: null
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { username } = this.state;
-    api.getUserByUsername(username)
+    const { username, password } = this.state;
+      api.getUserByUsername(username)
       .then(user => {
-        this.props.loginUser(username);
+        if (password === "password") {
+          this.props.loginUser(username);
+        } else {
+          this.setState({
+            err: {
+              msg: 'incorrect password!'
+            }
+          });
+        }
       })
       .catch(err => {
         this.setState({ 
-          userExists: false,
           err: {
             status: 404,
-            msg: 'user not found'
+            msg: 'invalid username'
           }
          });
-      })
+      });
+    
   }
 
   handleChange = (event) => {
@@ -33,17 +41,33 @@ class Login extends React.Component {
   }
 
   render() {
+    const { err } = this.state;
     return (
       <div className="login-container">
         <h3>Login</h3>
         <form onSubmit={ this.handleSubmit }>
           <label htmlFor="username">
-            <input id="username" type="text" onChange={ this.handleChange } placeholder="username"/>
+            <input 
+              id="username" 
+              type="text" 
+              onChange={ this.handleChange } 
+              placeholder="username" 
+              autoComplete="off"
+              required
+              value="jessjelly"
+            />
           </label>
           <label htmlFor="password">
-            <input id="password" onChange={ this.handleChange } placeholder="password"/>
+            <input 
+              type="password" 
+              id="password" 
+              onChange={ this.handleChange } 
+              placeholder="password"
+              value="password"
+            />
           </label>
           <button type="submit">Login</button>
+          { err && <p>{ err.msg }</p> }
         </form>
       </div>
     );
