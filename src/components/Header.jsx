@@ -68,12 +68,15 @@ class Header extends React.Component {
     return (
       <>
       <div className="header-container">
-        <Link to="/" className="home"><i className="fas fa-2x fa-home"></i></Link>
         <div><img src={Northcoders} alt=""/><h2>: NEWS</h2></div>
-        { !username && <i onClick={this.clickLogin} className="fas fa-2x fa-sign-in-alt"></i> }
+      </div>
+
+      <div className="navbar">
+        <Link to="/" className="home"><i className="fas fa-2x fa-home"></i></Link>
+        { !username && <i onClick={this.clickLogin} className="login fas fa-2x fa-sign-in-alt"></i> }
         { username && <p className="logout" onClick={this.clickLogout}>{ username } logout</p> }
       </div>
-      
+
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}

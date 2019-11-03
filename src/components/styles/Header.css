@@ -2,36 +2,43 @@
   color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 20px;
+  justify-content: center;
+  padding: 10px;
   background-color: #202829
 }
 
-.home {
-  float: left;
-}
-
-h1 {
+h2 {
   margin: 0;
 }
 
 .header-container img {
   height: 50px;
+  padding: 0;
+}
+
+.navbar {
+  background-color:  #374446;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .fas {
   color: white;
   text-decoration: none;
-  transition: all 0.3s
+  transition: all 0.3s;
+  margin: 10px 30px;
 }
 
 .fas:hover {
   transform: scale(1.12);
-  color: rgb(213, 213, 198);
+  color: rgb(186, 255, 167);
   cursor: pointer;
 }
 
 .logout {
+  color: white;
+  margin-right: 30px;
   font-weight: bold;
   transition: all 0.3s;
 }

@@ -10,7 +10,7 @@ let defaultState =
   username: null,
   articles: [],
   requestParams: {
-    sort_by: 'article_id',
+    sort_by: 'created_at',
     order: 'asc',
     limit: 10,
     p: 1,
@@ -21,14 +21,12 @@ let defaultState =
   err: null
 };
 
-// if (localStorage.ncState) {
-//   defaultState = JSON.parse(localStorage.ncState)
-// }
-
 class ArticlesList extends Component {
   state = defaultState;
 
   componentDidMount = () => {
+    if (localStorage.pagination) defaultState.pagination = JSON.parse(localStorage.pagination);
+    if (localStorage.requestParams) defaultState.requestParams = JSON.parse(localStorage.requestParams);
     const { requestParams } = this.state;
     const { username } = this.props;
     this.setState({ username });
@@ -57,7 +55,8 @@ class ArticlesList extends Component {
           isLoading: false,
           requestParams: { ...requestParams, topic: this.props.topic }
         });
-        localStorage.ncState = JSON.stringify(this.state);
+        localStorage.pagination = JSON.stringify(this.state.pagination);
+        localStorage.requestParams = JSON.stringify(this.state.requestParams);
       })
       .catch(err => {
         console.dir(err);

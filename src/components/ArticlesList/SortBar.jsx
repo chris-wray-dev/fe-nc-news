@@ -4,7 +4,9 @@ import './styles/SortBar.css'
 const SearchBar = ({ sortItems, requestParams, pagination }) => {
 
   const handleChange = (event) => {
-    requestParams[event.target.id] = event.target.value;
+    const param = event.target.id;
+    if (param === "limit") requestParams.p = 1;
+    requestParams[param] = event.target.value;
     sortItems(requestParams);
   }
 
@@ -48,7 +50,7 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           value={requestParams.p}>
           {pagination.pageList.map(page => {
             return (
-              <option key={page} value={page}>{page}</option>
+              <option key={ page } value={ page }>{ page }</option>
             )
           })}
         </select>
@@ -66,8 +68,6 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="40">40</option>
-
-
         </select>
 
       </label>
