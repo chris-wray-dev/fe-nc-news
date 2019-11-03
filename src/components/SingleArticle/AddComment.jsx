@@ -33,7 +33,7 @@ class AddComment extends React.Component {
       <div className="add-comment-container">
         <form onSubmit={ this.handleSubmit } id="add-comment-form">
           <label htmlFor="body">Comment : </label>
-          <textarea onChange={ this.handleChange } id="body" cols="70" rows="10" required/>
+          <textarea className="comment-body" onChange={ this.handleChange } id="body" required/>
           <button type="submit">Submit</button>
         </form>
         

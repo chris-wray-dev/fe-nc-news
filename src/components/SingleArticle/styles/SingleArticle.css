@@ -34,3 +34,7 @@ hr {
   cursor: pointer;
   font-weight: bold;
 }
+
+.add-comment-container {
+  width: 100%;
+}
