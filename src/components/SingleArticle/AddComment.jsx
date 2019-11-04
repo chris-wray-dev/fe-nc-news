@@ -24,7 +24,8 @@ class AddComment extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { submitComment } = this.props
+    const { submitComment } = this.props;
+    document.querySelector('.comment-body').value = '';
     submitComment(this.state);
   }
 

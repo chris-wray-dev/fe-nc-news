@@ -55,7 +55,8 @@ class SingleArticle extends Component {
     api.addArticleComment(comment)
       .then(comment => {
         this.setState({
-          comments: [ comment, ...this.state.comments ]
+          comments: [ comment, ...this.state.comments ],
+          showAddComment: false
         })
       })
       .catch(err => {
