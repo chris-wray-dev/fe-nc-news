@@ -62,7 +62,7 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           onChange={ handleChange } 
           id="limit" 
           type="number"
-          value="10"
+          value={ pagination.limit }
           >
           <option value="10">10</option>
           <option value="20">20</option>
