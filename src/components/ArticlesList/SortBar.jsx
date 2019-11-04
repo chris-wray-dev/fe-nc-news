@@ -20,7 +20,7 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           onChange={ handleChange } 
           name="sort_by" 
           id="sort_by"
-          value={requestParams.sort_by}>
+          value={ requestParams.sort_by }>
           <option value="">--sort by--</option>
           <option value="created_at">date created</option>
           <option value="title">title</option>
@@ -36,7 +36,7 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           onChange={ handleChange } 
           name="order" 
           id="order"
-          value={requestParams.order}>
+          value={ requestParams.order }>
           <option value="asc">asc</option>
           <option value="desc">desc</option>
         </select>
@@ -62,11 +62,11 @@ const SearchBar = ({ sortItems, requestParams, pagination }) => {
           onChange={ handleChange } 
           id="limit" 
           type="number"
-          value={requestParams.limit}
+          value="10"
           >
-          <option value="5">5</option>
           <option value="10">10</option>
           <option value="20">20</option>
+          <option value="30">30</option>
           <option value="40">40</option>
         </select>
 
