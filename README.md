@@ -2,6 +2,10 @@
 
 NC-news (short for NorthCoders News) is a social news aggregation, web content rating, and discussion web app.
 
+This front-end is built on the nc-news backend api at https://chris-nc-news.herokuapp.com/api
+
+The repo for the backend can be found at https://github.com/chris-wray-dev/be-nc-news
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
