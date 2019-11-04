@@ -5,6 +5,7 @@ import './App.css';
 import ArticlesList from './components/ArticlesList/ArticlesList';
 import SingleArticle from './components/SingleArticle/SingleArticle';
 import TopicsSidebar from './components/TopicsSidebar';
+import NotFound from './components/NotFound';
 
 
 
@@ -39,6 +40,7 @@ class App extends React.Component {
           <div className="app-main">
             
             <Router>
+              <NotFound default />
               <ArticlesList path="/" username={ username }/>
               <ArticlesList path="/articles" username={ username }/>
               <ArticlesList path="/topic/:topic" username={ username }/>
