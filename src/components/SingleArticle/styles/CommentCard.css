@@ -6,6 +6,12 @@
   border: 1px solid rgb(147, 175, 223);
 }
 
+.comment-body {
+  letter-spacing: 0.1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
 .delete-comment-button {
   padding: 5px;
   border-radius: 4px;

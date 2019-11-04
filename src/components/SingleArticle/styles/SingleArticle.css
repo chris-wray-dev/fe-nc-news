@@ -9,7 +9,11 @@
 
 .article-body {
   margin: 10px;
+  letter-spacing: 0.1rem;
+  line-height: 1.6;
+  text-align: left;
 }
+
 .votes-container {
   display: flex;
   flex-direction: row;

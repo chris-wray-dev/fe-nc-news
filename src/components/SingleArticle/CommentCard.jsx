@@ -7,7 +7,7 @@ const CommentCard = ({ comment, username, deleteComment }) => {
   return (
     <div className="comment-container">
       <h4>author: { comment.author }</h4>
-      <p>{ comment.body }</p>
+      <p className="comment-body">{ comment.body }</p>
       <p>{ (new Date(comment.created_at)).toLocaleString() }</p>
       <Voter 
         type="comment" 
