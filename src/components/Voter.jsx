@@ -50,7 +50,8 @@ class Voter extends Component {
         <i id="up-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-up"></i>
         <p>{ votes }</p>
         <i id="down-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-down"></i>
-        { err ? <p>{err.msg}</p> : null }
+        { err ? <p>{ err.msg }</p> : null }
+        {/* { vote !== 0 && <p>already voted</p> } */}
       </div>
     );
   }
