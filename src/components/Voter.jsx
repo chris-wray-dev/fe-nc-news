@@ -13,45 +13,52 @@ class Voter extends Component {
 
   handleVote = (event) => {
     let { type, id, vote, votes } = this.state;
-    
-    if (vote === 0) {
-      if (event.target.id === "up-vote") vote = 1;
-      if (event.target.id === "down-vote") vote = -1;
-
-      this.setState({ vote: vote, votes: votes + vote });
-
-      const errorState = (err) => {
-        this.setState({
-          err: {
-            status: 500,
-            msg: "oops - vote not counted"
-          },
-          vote: 0,
-          votes: votes
-        })
-      }
-
-      const addVotes = (apiFunc, id, vote) => {
-        apiFunc(id, vote).catch(err => {
-          errorState(err);
-        });
-      }
-
-      if (type === "comment") addVotes(api.patchCommentVote, id, vote);
-      if (type === "article") addVotes(api.patchArticleVote, id, vote);
+  
+    if (event.target.id === "up-vote") {
+      vote = 1
     }
 
+    if (event.target.id === "down-vote") {
+      vote = -1;
+    }
+
+    this.setState({ vote: this.state.vote + vote, votes: votes + vote });
+
+    const errorState = (err) => {
+      this.setState({
+        err: {
+          status: 500,
+          msg: "oops - vote not counted"
+        },
+        vote: 0,
+        votes: votes
+      })
+    }
+
+    const addVotes = (apiFunc, id, vote) => {
+      apiFunc(id, vote).catch(err => {
+        errorState(err);
+      });
+    }
+
+    if (type === "comment") addVotes(api.patchCommentVote, id, vote);
+    if (type === "article") addVotes(api.patchArticleVote, id, vote);
+ 
   }
 
   render() {
-    const { votes, err } = this.state;
+    const { votes, err, vote } = this.state;
     return (
       <div className="voter-container">
-        <i id="up-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-up"></i>
+        { vote < 1 
+          && <i id="up-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-up"></i>
+        }
         <p>{ votes }</p>
-        <i id="down-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-down"></i>
+
+        { vote > -1 
+          && <i id="down-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-down"></i>
+        }
         { err ? <p>{ err.msg }</p> : null }
-        {/* { vote !== 0 && <p>already voted</p> } */}
       </div>
     );
   }

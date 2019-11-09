@@ -30,7 +30,7 @@
   font-weight: bold;
 }
 
-.comment-body {
+#add-comment-form .comment-body {
   width: 90%;
   height: 100px;
 }

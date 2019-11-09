@@ -24,14 +24,3 @@ const CommentCard = ({ comment, username, deleteComment }) => {
 };
 
 export default CommentCard;
-
-/*
-{
-"comment_id": 116,
-"author": "weegembump",
-"article_id": 5,
-"votes": 3,
-"created_at": "2017-10-18T13:06:42.375Z",
-"body": "Praesentium dolor doloribus sint. Quisquam molestiae dolorum asperiores animi omnis."
-},
-*/
