@@ -7,9 +7,6 @@ import SingleArticle from './components/SingleArticle/SingleArticle';
 import TopicsSidebar from './components/TopicsSidebar';
 import NotFound from './components/NotFound';
 
-
-
-
 class App extends React.Component {
 
   state = {

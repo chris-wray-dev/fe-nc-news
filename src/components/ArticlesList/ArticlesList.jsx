@@ -77,6 +77,7 @@ class ArticlesList extends Component {
       <div className="articles-list-container">
         <h2>Articles</h2>
         { requestParams.topic && <h3>topic : { requestParams.topic }</h3> }
+        { this.props.username && <i class="fas fa-2x fa-feather-alt"></i> }
         <p>{ `articles ${pagination.from} 
           to ${pagination.to > pagination.total 
               ? pagination.total : pagination.to } 
