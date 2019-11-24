@@ -48,14 +48,15 @@ class Voter extends Component {
 
   render() {
     const { votes, err, vote } = this.state;
+    const { username } = this.props
     return (
       <div className="voter-container">
-        { vote < 1 
+        { (vote < 1 && username)
           && <i id="up-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-up"></i>
         }
         <p>{ votes }</p>
 
-        { vote > -1 
+        { (vote > -1 && username)
           && <i id="down-vote" onClick={ this.handleVote } className="far fa-2x fa-thumbs-down"></i>
         }
         { err ? <p>{ err.msg }</p> : null }

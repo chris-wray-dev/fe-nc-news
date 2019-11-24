@@ -117,6 +117,7 @@ class SingleArticle extends Component {
             type="article" 
             id={article.article_id} 
             votes={article.votes}
+            username={username}
           />
         </div>
 

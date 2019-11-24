@@ -9,11 +9,12 @@ const CommentCard = ({ comment, username, deleteComment }) => {
       <h4>author: { comment.author }</h4>
       <p className="comment-body">{ comment.body }</p>
       <p>{ (new Date(comment.created_at)).toLocaleString() }</p>
-      { username && <Voter 
+      <Voter 
         type="comment" 
         id={comment.comment_id} 
         votes={comment.votes}
-      /> }
+        username={username}
+      />
       { username === comment.author 
         ? <button className="delete-comment-button" 
             onClick={ () => { deleteComment(comment.comment_id) }}>Delete Comment</button>
